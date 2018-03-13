@@ -6,13 +6,13 @@ namespace structures {
 	struct TNode_l
 	{
 		T data;
-		TNode_l<T>* next = NULL;
+		TNode_l<T>* next = nullptr;
 	};
 
 	template <class T>
 	class LinkedList {
 	public:
-		TNode_l<T> *it = NULL;
+		TNode_l<T> *it = nullptr;
 		LinkedList();
 		~LinkedList();
 		bool setIterator(size_t position);
@@ -23,15 +23,15 @@ namespace structures {
 		size_t numb();
 		TNode_l<T>* end();
 	private:
-		TNode_l<T> *begnode = NULL;
-		TNode_l<T> *headnode = NULL;
+		TNode_l<T> *begnode = nullptr;
+		TNode_l<T> *headnode = nullptr;
 		bool empty;
 	};
 
 	template<class T>
 	LinkedList<T>::LinkedList()
 	{
-		this->begnode = NULL;
+		this->begnode = nullptr;
 		this->headnode = this->begnode;
 		empty = true;
 		this->it = this->begnode;
@@ -41,7 +41,7 @@ namespace structures {
 	LinkedList<T>::~LinkedList()
 	{
 		TNode_l<T>*node;
-		while (begnode != NULL) {
+		while (begnode != nullptr) {
 			node = this->begnode;
 			this->begnode = (this->begnode)->next;
 			delete (node);
@@ -98,7 +98,7 @@ namespace structures {
 				tmp = tmp->next;
 			node->next = tmp->next;
 			tmp->next = node;
-			if (node->next == NULL)
+			if (node->next == nullptr)
 				this->headnode = node;
 			return true;
 		}
@@ -116,14 +116,14 @@ namespace structures {
 		}
 		else {
 			for (size_t i = 0; i < position - 2; i++) {
-				if (tmp->next == NULL)
+				if (tmp->next == nullptr)
 					return false;
 				tmp = tmp->next;
 			}
 			TNode_l<T>*del = tmp->next;
 			tmp->next = (tmp->next)->next;
 			delete del;
-			if (tmp->next == NULL)
+			if (tmp->next == nullptr)
 				this->headnode = tmp;
 			return true;
 		}
