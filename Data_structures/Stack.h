@@ -1,14 +1,15 @@
 #pragma once
 #include <iostream>
+#include "Structures.h"
 
 
-namespace stack {
+namespace structures {
 	template <class T>
-	struct TNode {
-		TNode<T>* next = nullptr;
+	struct TNode_s
+	{
 		T data;
+		TNode_s<T>* next = NULL;
 	};
-
 	template <class T>
 	class Stack
 	{
@@ -21,10 +22,9 @@ namespace stack {
 		bool empty();
 		size_t size();
 	private:
-		TNode<T> *top_;
+		TNode_s<T> *top_;
 		size_t size_;
 	};
-
 
 
 	template<class T>
@@ -38,7 +38,7 @@ namespace stack {
 	template<class T>
 	Stack<T>::~Stack()
 	{
-		TNode<T> *tmp;
+		TNode_s<T> *tmp;
 		while (this->top_) {
 			tmp = this->top_;
 			this->top_ = this->top_->next;
@@ -50,7 +50,7 @@ namespace stack {
 	template<class T>
 	void Stack<T>::pushBack(T inputData)
 	{
-		TNode<T>* node = new TNode<T>();
+		TNode_s<T>* node = new TNode_s<T>();
 		node->data = inputData;
 		node->next = this->top_;
 		this->top_ = node;
@@ -60,7 +60,7 @@ namespace stack {
 	template<class T>
 	void Stack<T>::popBack()
 	{
-		TNode<T>* tmp = this->top_;
+		TNode_s<T>* tmp = this->top_;
 		this->top_ = this->top_->next;
 		delete tmp;
 		size_--;
