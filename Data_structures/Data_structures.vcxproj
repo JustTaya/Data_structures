@@ -118,6 +118,7 @@
     <ClInclude Include="Linked_List.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="Structures.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

@@ -1,6 +1,4 @@
-#include "Queue.h"
-#include "Linked_List.h"
-#include "Stack.h"
+#include "Structures.h"
 #include <iostream>
 
 int main() {
