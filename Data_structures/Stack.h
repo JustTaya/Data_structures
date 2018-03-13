@@ -1,87 +1,90 @@
 #pragma once
 #include <iostream>
 
-template <class T>
-struct TNode {
-	TNode<T>*prnode=nullptr;
-	T dat;
-};
 
-template <class T>
-class Stack
-{
-private:
-	TNode<T>*top;
-	size_t size;
-public:
-	Stack();
-	~Stack();
-	bool Push_Back(T data);
-	bool Pop_Back();
-	T Top();
-	bool Empty();
-	size_t Size();
-};
+namespace stack {
+	template <class T>
+	struct TNode {
+		TNode<T>* next = nullptr;
+		T data;
+	};
+
+	template <class T>
+	class Stack
+	{
+	public:
+		Stack();
+		~Stack();
+		void pushBack(T input_data);
+		void popBack();
+		T top();
+		bool empty();
+		size_t size();
+	private:
+		TNode<T> *top_;
+		size_t size_;
+	};
 
 
 
-template<class T>
-Stack<T>::Stack()
-{
+	template<class T>
+	Stack<T>::Stack()
+	{
 
-	this->top = nullptr;
-	this->size = 0;
-}
-
-template<class T>
-Stack<T>::~Stack()
-{
-	TNode<T> *tmp;
-	while (this->top) {
-		tmp = this->top;
-		this->top = this->top->prnode;
-		delete tmp;
+		this->top_ = nullptr;
+		this->size_ = 0;
 	}
-   size=0;
-}
 
-template<class T>
-bool Stack<T>::Push_Back(T data)
-{
-	TNode<T>* node = new TNode<T>();
-	node->dat = data;
-	node->prnode = this->top;
-	this->top = node;
-	size++;
-	return false;
-}
+	template<class T>
+	Stack<T>::~Stack()
+	{
+		TNode<T> *tmp;
+		while (this->top_) {
+			tmp = this->top_;
+			this->top_ = this->top_->next;
+			delete tmp;
+		}
+		size_ = 0;
+	}
 
-template<class T>
-bool Stack<T>::Pop_Back()
-{
-	TNode<T>* tmp = this->top;
-	this->top = this->top->prnode;
-	delete tmp;
-	size--;
-	return false;
-}
+	template<class T>
+	void Stack<T>::pushBack(T inputData)
+	{
+		TNode<T>* node = new TNode<T>();
+		node->data = inputData;
+		node->next = this->top_;
+		this->top_ = node;
+		size_++;
+	}
 
-template<class T>
-T Stack<T>::Top()
-{
-	return this->top->dat;
-}
+	template<class T>
+	void Stack<T>::popBack()
+	{
+		TNode<T>* tmp = this->top_;
+		this->top_ = this->top_->next;
+		delete tmp;
+		size_--;
+	}
 
-template<class T>
-bool Stack<T>::Empty()
-{
-	if (top == nullptr)
-		return true;
-	return false;
-}
 
-template<class T>
-size_t Stack<T>::Size()
-{
-	return size;
+	template<class T>
+	T Stack<T>::top()
+	{
+		return this->top_->data;
+	}
+
+	template<class T>
+	bool Stack<T>::empty()
+	{
+		if (top_ == nullptr)
+			return true;
+		return false;
+	}
+
+	template<class T>
+	size_t Stack<T>::size()
+	{
+		return size_;
+	}
+
 }
